@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Download</title>
+</head>
+<body>
+	<form onsubmit="call_api(); return false;">
+		Enter search: <input type="text" id="name">
+		<input type="submit">
+	</form>
+	<a id="a">Download</a>
+	<script type="text/javascript">
+		function call_api() {
+			var s = document.getElementById('name').value;
+			s = s.replace(" ", "+");
+			if (is_valid(s)) { //check validity of s
+				var a = document.getElementById('a'); 
+                a.title = "Click to download"; 
+                a.href = "http://ftsio.pythonanywhere.com/music/?n="+s; 
+                document.body.append(a);
+                document.getElementById('name').value = "";
+                return;
+			}
+			alert("invalid search");
+			return;
+		}
+
+		function is_valid(s) {
+			if (s==="") {
+				return false;
+			}
+			return true;
+		}
+	</script>
+</body>
+</html>
